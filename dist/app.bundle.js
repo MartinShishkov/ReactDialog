@@ -18457,8 +18457,8 @@ var FullscreenDialog = function (_React$Component) {
                         "X"
                     ),
                     _react2.default.createElement(
-                        "p",
-                        null,
+                        "span",
+                        { style: this._css().barTitle },
                         this.props.title
                     )
                 ),
@@ -18492,6 +18492,11 @@ var FullscreenDialog = function (_React$Component) {
                     fontSize: "22pt",
                     borderStyle: "none",
                     backgroundColor: "transparent"
+                },
+                barTitle: {
+                    position: "absolute",
+                    lineHeight: "60px",
+                    fontSize: "16pt"
                 }
             };
         }

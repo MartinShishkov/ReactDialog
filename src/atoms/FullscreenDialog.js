@@ -14,7 +14,7 @@ class FullscreenDialog extends React.Component{
             <div style={this._css().container}>
                 <div style={this._css().bar}>
                     <button onClick={this.props.onClose} style={this._css().closeBtn}>{"X"}</button>
-                    <p>{this.props.title}</p>
+                    <span style={this._css().barTitle}>{this.props.title}</span>
                 </div>
                 {this.props.children}
             </div>
@@ -46,6 +46,11 @@ class FullscreenDialog extends React.Component{
                 fontSize: "22pt",
                 borderStyle: "none",
                 backgroundColor: "transparent"
+            },
+            barTitle: {
+                position: "absolute",
+                lineHeight: "60px",
+                fontSize: "16pt"
             }
         }
     }
