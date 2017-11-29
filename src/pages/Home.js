@@ -1,57 +1,39 @@
 import React from "react";
 import { FullscreenDialog } from "../atoms/FullscreenDialog";
+import { DialogService } from "../logic/DialogService";
+import { ComplexComponent } from "../molecules/ComplexComponent";
 
 class HomePage extends React.Component{
     constructor(props){
-        super(props);
+        super(props);      
 
-        this.state = {
-            parentDialogOpened: true,
-            childDialogOpened: false
-        };
-
-        this.handleShowDialog = this.handleShowDialog.bind(this);
-        this.handleCloseDialog = this.handleCloseDialog.bind(this);
+        this.dialogService = new DialogService(() => this.forceUpdate());
     }
 
     render(){
+        const dialog = this.dialogService.topLevelDialog();
+        
+        if(dialog !== null){
+            return dialog;
+        }
+
         return (
             <div>
-                <button onClick={() => { this.handleShowDialog("parentDialog"); }}>
+                <button onClick={() => { 
+                    const dialog = (
+                        <FullscreenDialog dialogService={this.dialogService}>
+                            <h1>some dialog</h1>
+                            <ComplexComponent dialogService={this.dialogService}/>
+                        </FullscreenDialog>
+                    );
+
+                    this.dialogService.pushDialog(dialog);
+                }}>
                     {"show dialog"}
-                </button>
-
-                <FullscreenDialog
-                    title={"parent dialog"}
-                    isOpened={this.state.parentDialogOpened}
-                    onClose={() => { this.handleCloseDialog("parentDialog"); }}>
-                    <p>{"this is the dialog"}</p>
-                    <button onClick={() => { this.handleShowDialog("childDialog"); }}>
-                        {"Whoop! Open the other dialog, nigga!"}
-                    </button>
-
-                    <FullscreenDialog
-                        title={"child dialog"}
-                        isOpened={this.state.childDialogOpened}
-                        onClose={() => { this.handleCloseDialog("childDialog"); }}>
-                        <h2>{"Hell yeah, baby!"}</h2>
-                    </FullscreenDialog>
-                </FullscreenDialog>
+                </button>                
             </div>
         );
-    }
-
-    handleShowDialog(dialog){
-        this.setState({
-            [`${dialog}Opened`]: true
-        });
-    }
-
-    handleCloseDialog(dialog){
-        this.setState({
-            [`${dialog}Opened`]: false
-        });
-    }
+    }  
 }
 
 export { HomePage };

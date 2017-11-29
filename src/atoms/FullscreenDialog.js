@@ -5,15 +5,11 @@ class FullscreenDialog extends React.Component{
         super(props);
     }
 
-    render(){
-        if(!this.props.isOpened){
-            return null;
-        }
-        
+    render(){       
         return (
             <div style={this._css().container}>
                 <div style={this._css().bar}>
-                    <button onClick={this.props.onClose} style={this._css().closeBtn}>{"X"}</button>
+                    <button onClick={() => { this.props.dialogService.popDialog(); }} style={this._css().closeBtn}>{"X"}</button>
                     <span style={this._css().barTitle}>{this.props.title}</span>
                 </div>
                 {this.props.children}

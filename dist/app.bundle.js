@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -258,6 +258,21 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(16);
+} else {
+  module.exports = __webpack_require__(17);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -294,21 +309,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
-} else {
-  module.exports = __webpack_require__(16);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
@@ -506,7 +506,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(1);
+var emptyFunction = __webpack_require__(2);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -577,7 +577,7 @@ module.exports = warning;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(5);
   var warning = __webpack_require__(6);
-  var ReactPropTypesSecret = __webpack_require__(17);
+  var ReactPropTypesSecret = __webpack_require__(18);
   var loggedTypeFailures = {};
 }
 
@@ -682,7 +682,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(1);
+var emptyFunction = __webpack_require__(2);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -876,7 +876,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(20);
+var isTextNode = __webpack_require__(21);
 
 /*eslint-disable no-bitwise */
 
@@ -940,17 +940,121 @@ module.exports = focusNode;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.FullscreenDialog = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(18);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FullscreenDialog = function (_React$Component) {
+    _inherits(FullscreenDialog, _React$Component);
+
+    function FullscreenDialog(props) {
+        _classCallCheck(this, FullscreenDialog);
+
+        return _possibleConstructorReturn(this, (FullscreenDialog.__proto__ || Object.getPrototypeOf(FullscreenDialog)).call(this, props));
+    }
+
+    _createClass(FullscreenDialog, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                "div",
+                { style: this._css().container },
+                _react2.default.createElement(
+                    "div",
+                    { style: this._css().bar },
+                    _react2.default.createElement(
+                        "button",
+                        { onClick: function onClick() {
+                                _this2.props.dialogService.popDialog();
+                            }, style: this._css().closeBtn },
+                        "X"
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        { style: this._css().barTitle },
+                        this.props.title
+                    )
+                ),
+                this.props.children
+            );
+        }
+    }, {
+        key: "_css",
+        value: function _css() {
+            return {
+                container: {
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                    width: "100%",
+                    height: "100%",
+                    paddingTop: "60px",
+                    backgroundColor: "green"
+                },
+                bar: {
+                    position: "fixed",
+                    top: "0",
+                    left: "0",
+                    width: "100%",
+                    height: "60px",
+                    backgroundColor: "yellow"
+                },
+                closeBtn: {
+                    width: "60px",
+                    height: "60px",
+                    fontSize: "22pt",
+                    borderStyle: "none",
+                    backgroundColor: "transparent"
+                },
+                barTitle: {
+                    position: "absolute",
+                    lineHeight: "60px",
+                    fontSize: "16pt"
+                }
+            };
+        }
+    }]);
+
+    return FullscreenDialog;
+}(_react2.default.Component);
+
+exports.FullscreenDialog = FullscreenDialog;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Home = __webpack_require__(27);
+var _Home = __webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -979,7 +1083,7 @@ window.appEntryPoint = function (settings) {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -992,7 +1096,7 @@ window.appEntryPoint = function (settings) {
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(3),n=__webpack_require__(4),p=__webpack_require__(1),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(3),n=__webpack_require__(4),p=__webpack_require__(2),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -1007,7 +1111,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1032,7 +1136,7 @@ var _assign = __webpack_require__(3);
 var emptyObject = __webpack_require__(4);
 var invariant = __webpack_require__(5);
 var warning = __webpack_require__(6);
-var emptyFunction = __webpack_require__(1);
+var emptyFunction = __webpack_require__(2);
 var checkPropTypes = __webpack_require__(7);
 
 // TODO: this is special because it gets imported during build.
@@ -2372,7 +2476,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2391,7 +2495,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2429,15 +2533,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(19);
+  module.exports = __webpack_require__(20);
 } else {
-  module.exports = __webpack_require__(22);
+  module.exports = __webpack_require__(23);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2453,7 +2557,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(2),l=__webpack_require__(8),B=__webpack_require__(3),C=__webpack_require__(1),ba=__webpack_require__(9),da=__webpack_require__(10),ea=__webpack_require__(11),fa=__webpack_require__(12),ia=__webpack_require__(13),D=__webpack_require__(4);
+var aa=__webpack_require__(1),l=__webpack_require__(8),B=__webpack_require__(3),C=__webpack_require__(2),ba=__webpack_require__(9),da=__webpack_require__(10),ea=__webpack_require__(11),fa=__webpack_require__(12),ia=__webpack_require__(13),D=__webpack_require__(4);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -2673,7 +2777,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2688,7 +2792,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(21);
+var isNode = __webpack_require__(22);
 
 /**
  * @param {*} object The object to check.
@@ -2701,7 +2805,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2729,7 +2833,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2750,12 +2854,12 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(2);
+var React = __webpack_require__(1);
 var invariant = __webpack_require__(5);
 var warning = __webpack_require__(6);
 var ExecutionEnvironment = __webpack_require__(8);
 var _assign = __webpack_require__(3);
-var emptyFunction = __webpack_require__(1);
+var emptyFunction = __webpack_require__(2);
 var EventListener = __webpack_require__(9);
 var getActiveElement = __webpack_require__(10);
 var shallowEqual = __webpack_require__(11);
@@ -2763,8 +2867,8 @@ var containsNode = __webpack_require__(12);
 var focusNode = __webpack_require__(13);
 var emptyObject = __webpack_require__(4);
 var checkPropTypes = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(23);
-var camelizeStyleName = __webpack_require__(25);
+var hyphenateStyleName = __webpack_require__(24);
+var camelizeStyleName = __webpack_require__(26);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18131,7 +18235,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18146,7 +18250,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(24);
+var hyphenate = __webpack_require__(25);
 
 var msPattern = /^ms-/;
 
@@ -18173,7 +18277,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18209,7 +18313,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18224,7 +18328,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(26);
+var camelize = __webpack_require__(27);
 
 var msPattern = /^-ms-/;
 
@@ -18252,7 +18356,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18287,7 +18391,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18300,15 +18404,17 @@ exports.HomePage = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FullscreenDialog = __webpack_require__(28);
+var _FullscreenDialog = __webpack_require__(14);
+
+var _DialogService = __webpack_require__(29);
+
+var _ComplexComponent = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18324,17 +18430,152 @@ var HomePage = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
 
-        _this.state = {
-            parentDialogOpened: true,
-            childDialogOpened: false
-        };
-
-        _this.handleShowDialog = _this.handleShowDialog.bind(_this);
-        _this.handleCloseDialog = _this.handleCloseDialog.bind(_this);
+        _this.dialogService = new _DialogService.DialogService(function () {
+            return _this.forceUpdate();
+        });
         return _this;
     }
 
     _createClass(HomePage, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            var dialog = this.dialogService.topLevelDialog();
+
+            if (dialog !== null) {
+                return dialog;
+            }
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "button",
+                    { onClick: function onClick() {
+                            var dialog = _react2.default.createElement(
+                                _FullscreenDialog.FullscreenDialog,
+                                { dialogService: _this2.dialogService },
+                                _react2.default.createElement(
+                                    "h1",
+                                    null,
+                                    "some dialog"
+                                ),
+                                _react2.default.createElement(_ComplexComponent.ComplexComponent, { dialogService: _this2.dialogService })
+                            );
+
+                            _this2.dialogService.pushDialog(dialog);
+                        } },
+                    "show dialog"
+                )
+            );
+        }
+    }]);
+
+    return HomePage;
+}(_react2.default.Component);
+
+exports.HomePage = HomePage;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DialogService = function () {
+    function DialogService(onStackChanged) {
+        var _this = this;
+
+        _classCallCheck(this, DialogService);
+
+        this.dialogStack = [];
+        this.onStackChanged = onStackChanged;
+
+        window.addEventListener("popstate", function () {
+            _this.dialogStack.pop();
+            _this.onStackChanged();
+        }, false);
+    }
+
+    _createClass(DialogService, [{
+        key: "pushDialog",
+        value: function pushDialog(dialog) {
+            this.dialogStack.push(dialog);
+            window.history.pushState("dialog" + this.dialogStack.length, null, null);
+
+            this.onStackChanged();
+        }
+    }, {
+        key: "popDialog",
+        value: function popDialog() {
+            window.history.back(1);
+
+            this.onStackChanged();
+        }
+    }, {
+        key: "topLevelDialog",
+        value: function topLevelDialog() {
+            if (this.dialogStack.length !== 0) {
+                return this.dialogStack[this.dialogStack.length - 1];
+            }
+
+            return null;
+        }
+    }]);
+
+    return DialogService;
+}();
+
+exports.DialogService = DialogService;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ComplexComponent = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FullscreenDialog = __webpack_require__(14);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ComplexComponent = function (_React$Component) {
+    _inherits(ComplexComponent, _React$Component);
+
+    function ComplexComponent(props) {
+        _classCallCheck(this, ComplexComponent);
+
+        return _possibleConstructorReturn(this, (ComplexComponent.__proto__ || Object.getPrototypeOf(ComplexComponent)).call(this, props));
+    }
+
+    _createClass(ComplexComponent, [{
         key: "render",
         value: function render() {
             var _this2 = this;
@@ -18345,167 +18586,39 @@ var HomePage = function (_React$Component) {
                 _react2.default.createElement(
                     "button",
                     { onClick: function onClick() {
-                            _this2.handleShowDialog("parentDialog");
+                            var dialog = _react2.default.createElement(
+                                _FullscreenDialog.FullscreenDialog,
+                                {
+                                    dialogService: _this2.props.dialogService,
+                                    title: "Inner Dialog" },
+                                _react2.default.createElement(
+                                    "h1",
+                                    null,
+                                    "This is the inner dialog!"
+                                ),
+                                _react2.default.createElement(
+                                    "a",
+                                    { href: "https://www.google.bg" },
+                                    _react2.default.createElement(
+                                        "h3",
+                                        null,
+                                        "go to google"
+                                    )
+                                )
+                            );
+
+                            _this2.props.dialogService.pushDialog(dialog);
                         } },
-                    "show dialog"
-                ),
-                _react2.default.createElement(
-                    _FullscreenDialog.FullscreenDialog,
-                    {
-                        title: "parent dialog",
-                        isOpened: this.state.parentDialogOpened,
-                        onClose: function onClose() {
-                            _this2.handleCloseDialog("parentDialog");
-                        } },
-                    _react2.default.createElement(
-                        "p",
-                        null,
-                        "this is the dialog"
-                    ),
-                    _react2.default.createElement(
-                        "button",
-                        { onClick: function onClick() {
-                                _this2.handleShowDialog("childDialog");
-                            } },
-                        "Whoop! Open the other dialog, nigga!"
-                    ),
-                    _react2.default.createElement(
-                        _FullscreenDialog.FullscreenDialog,
-                        {
-                            title: "child dialog",
-                            isOpened: this.state.childDialogOpened,
-                            onClose: function onClose() {
-                                _this2.handleCloseDialog("childDialog");
-                            } },
-                        _react2.default.createElement(
-                            "h2",
-                            null,
-                            "Hell yeah, baby!"
-                        )
-                    )
+                    "Open the inner dialog!"
                 )
             );
         }
-    }, {
-        key: "handleShowDialog",
-        value: function handleShowDialog(dialog) {
-            this.setState(_defineProperty({}, dialog + "Opened", true));
-        }
-    }, {
-        key: "handleCloseDialog",
-        value: function handleCloseDialog(dialog) {
-            this.setState(_defineProperty({}, dialog + "Opened", false));
-        }
     }]);
 
-    return HomePage;
+    return ComplexComponent;
 }(_react2.default.Component);
 
-exports.HomePage = HomePage;
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.FullscreenDialog = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FullscreenDialog = function (_React$Component) {
-    _inherits(FullscreenDialog, _React$Component);
-
-    function FullscreenDialog(props) {
-        _classCallCheck(this, FullscreenDialog);
-
-        return _possibleConstructorReturn(this, (FullscreenDialog.__proto__ || Object.getPrototypeOf(FullscreenDialog)).call(this, props));
-    }
-
-    _createClass(FullscreenDialog, [{
-        key: "render",
-        value: function render() {
-            if (!this.props.isOpened) {
-                return null;
-            }
-
-            return _react2.default.createElement(
-                "div",
-                { style: this._css().container },
-                _react2.default.createElement(
-                    "div",
-                    { style: this._css().bar },
-                    _react2.default.createElement(
-                        "button",
-                        { onClick: this.props.onClose, style: this._css().closeBtn },
-                        "X"
-                    ),
-                    _react2.default.createElement(
-                        "span",
-                        { style: this._css().barTitle },
-                        this.props.title
-                    )
-                ),
-                this.props.children
-            );
-        }
-    }, {
-        key: "_css",
-        value: function _css() {
-            return {
-                container: {
-                    position: "absolute",
-                    top: "0",
-                    left: "0",
-                    width: "100%",
-                    height: "100%",
-                    paddingTop: "60px",
-                    backgroundColor: "green"
-                },
-                bar: {
-                    position: "fixed",
-                    top: "0",
-                    left: "0",
-                    width: "100%",
-                    height: "60px",
-                    backgroundColor: "yellow"
-                },
-                closeBtn: {
-                    width: "60px",
-                    height: "60px",
-                    fontSize: "22pt",
-                    borderStyle: "none",
-                    backgroundColor: "transparent"
-                },
-                barTitle: {
-                    position: "absolute",
-                    lineHeight: "60px",
-                    fontSize: "16pt"
-                }
-            };
-        }
-    }]);
-
-    return FullscreenDialog;
-}(_react2.default.Component);
-
-exports.FullscreenDialog = FullscreenDialog;
+exports.ComplexComponent = ComplexComponent;
 
 /***/ })
 /******/ ]);
